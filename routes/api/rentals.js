@@ -22,7 +22,7 @@ router.get("/rents/:id", async (req, res) => {
 
     const rent = await Rent.findOne({ _id });
     if (!rent) {
-      return res.status(404).json({ msg: "Rent not found"});
+      return res.status(404).json({ msg: "Rent with the id not found"});
     } else {
       return res.status(200).json(rent);
     }
