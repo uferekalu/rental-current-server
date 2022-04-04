@@ -15,6 +15,22 @@ router.get("/rents", async (req, res) => {
   }
 });
 
+// get a rent info
+router.get("/rents/:id", async (req, res) => {
+  try {
+    const _id = req.params.id;
+
+    const rent = await Rent.findOne({ _id });
+    if (!rent) {
+      return res.status(404).json({ msg: "Rent not found"});
+    } else {
+      return res.status(200).json(rent);
+    }
+  } catch (error) {
+    return res.status(500).json({ error: error });
+  }
+});
+
 // create rental request
 router.post("/rents", async (req, res) => {
   try {
